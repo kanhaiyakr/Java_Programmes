@@ -1,0 +1,399 @@
+-----Always Concentrate on Practical Knowledge not on Theoretical--------
+Sructure Of Java Class-:
+Class{
+  1. Variables
+  2. Methods
+  3. Constructors
+  4. Instance Blocks
+  5. Static Blocks
+}
+In the previous class variables completed.... Now we move on to Methods.
+
+Java Methods-:
+-------------
+Wrong Way to write business logics in Java
+Class Test{
+  int a = 10;
+  int b = 20;
+  System.out.println(a+b);      ////// Not Valid In Java that's why Methods Concept come across !!
+}
+------------
+Right Way to write business logics in Java
+
+Class Test{
+
+  void m1(){      -----------> Methos Structure
+
+  }
+  public static void main(String[] args){
+
+  }
+}
+1. Methods are used to write business logics of the Application.
+2. Methods are of 2 types
+    a. Instance Method          -----------> Simple User defined methods are Instance method.
+    b. Static Method            -----------> methods using Static Modifier are Static method.
+3. In Instance method memory created during Object Creation.
+    Accessing of Instance Method by Using that Object.
+4. In Static method memory created when .class byte code load into memory.
+    Accessing of Static Method by Using Class Name.
+
+
+Permission Of Accesing Variables & Methods
+------------------------------------------!
+Before Moving Further We should know about the Area In Java.
+There are 2 Area in Java --> A. Instance Area   B. Static Area
+I have mentioned those area below in Application.
+
+Class Test{
+  // instance variable
+  int a = 10;
+  int b = 20;
+  // static variable
+  Static int a = 10;
+  Static int b = 20;
+  void m1(){        ---------------> instance method
+    System.out.println(a+b);                          #Instance Area#
+  }
+  Static void m2(){     ------------> Static Method
+  Test t = new Test();                                #Static Area#
+  System.out.println(t.a + t.b);
+  }
+  public static void main(String[] args){
+  }
+}
+
+About Permissions-:
+ 1. Instance var & method
+    A. If we are in same area(Instance Area) direct accessing.
+    B. If we are in different area(Static Area) accessing by Object.
+ 2. Static var & method
+    Note-: Whether it is any type of area var & method acessing by Class Name.
+------------------------------------------!
+
+Syntax Of Method-:
+----------------
+Every method contains Method Name,return-type.
+But in real application method contains Modifiers-list,return-type,method-name(params_list),throws{exception handling}.
+We will discuss everything further.
+Take 1 Example to write Method.....
+Example-: I am going to take Drivery Licence from DTO office but at there we have to submit some document like id1,id2,id3 and
+after providing docs they give me ID_no which is permitted for Only India.But at the time of apply we get some exception
+like id is not correct so we have to handle those exception.In not all situation we have to handle exception for only some person it is mandatory.
+to handle those exception we use throws Keyword.
+So our method will be-: India ID DL(id1,id2,id3)throws Exception;
+
+General Synax Of Method Will Be -:
+Modifiers-List Return-type Method-name(params-list)throws Exception;
+Example-: public void m1(int a, int b); -------> assume there is no exception.
+          private int m2();  -------> assume there is no exception.
+          protected int m3(int a)throws Exceptions;
+----------------------------------------------------
+Method Signature-: method name with their corresponding parameter-list is called method signature.
+----------------
+method-name(params-list)
+example-: from above i take A. m1(int a, int b)-------< method signature B. m2() -----< method signature C. m3(int a)------<method signature
+----------------------------------------------------
+Major Points about methods.
+example-:
+void m1() <------------- this is called method declaration.
+{
+//logics here   <----------this is called method implementation.
+}
+public static void main(String[] args){
+Test t = new Test();
+t.m1();   <-----------------this is called method calling.
+}
+!!------------Now We Can move for Example-------------!!
+--------------------------------------------------------
+Sample Example
+--------------
+class Test{
+  void m1(){  //instance method
+    System.out.println("method m1");
+  }
+  static void m2(){   //static method
+    System.out.println("method m2");
+  }
+  public static void main(String[] args){
+    Test t = new Test();
+    t.m1();
+    Test.m2();
+  }
+}
+/*
+pika@pika-HP-ENVY-Notebook:~/java_kanha/Java_Programmes$ java Test
+method m1
+method m2
+*/
+--------------
+Example 1-:
+class Test{
+  // instance variable
+  int a = 10;
+  int b = 20;
+  void m1(){  //instance method
+    System.out.println(a+b);
+  }
+  static void m2(){   //static method
+    Test t = new Test();
+    System.out.println(t.a + t.b);
+  }
+  public static void main(String[] args){
+    Test t = new Test();
+    t.m1();
+    Test.m2();
+  }
+}
+--------------
+Example 2-:
+class Test{
+  void m1(int a, char ch){  //instance method --------- arguments which are passed in methods are always Local to the method.
+    System.out.println(a);
+    System.out.println(ch);
+  }
+  static void m2(String str, boolean b){   //static method--------- arguments which are passed in methods are always Local to the method.
+    System.out.println(str);
+    System.out.println(b);
+  }
+  public static void main(String[] args){
+    Test t = new Test();
+    t.m1(10,'A');
+    Test.m2("kanhaiya",true);
+  }
+}
+/*
+Output-:
+pika@pika-HP-ENVY-Notebook:~/java_kanha/Java_Programmes$ java Test
+10
+A
+kanhaiya
+true
+*/
+--------------
+Example 3-:
+//In real appliaction development methods are expecting  object as parameter.
+class X{}
+class Y{}
+class Student{}
+class Emp{}
+class Test{
+  void m1(X x, Emp e){                    // x & e are object of X & Emp class
+    System.out.println("m1 method");
+  }
+  static void m2(Y y, Student s){         // y & s are object of Y & Student class
+    System.out.println("m2 method");
+  }
+  public static void main(String[] args){
+    Test t = new Test();
+    X x1 = new X();
+    Emp e1 = new Emp();
+    t.m1(x1,e1);// we can also pass object directly like  t.m1(new X(),new Emp());
+    Y y1 = new Y();
+    Student s1 = new Student();
+    Test.m2(y1,s1); // we can also pass object like Test.m2(new Y(), new Student());
+  }
+}
+/*
+Output-:
+pika@pika-HP-ENVY-Notebook:~/java_kanha/Java_Programmes$ java Test
+m1 method
+m2 method
+
+*/
+-------------
+Example 4-:
+class Test{
+  void m1(){
+    System.out.println("method m1");
+  }
+  void m1(){
+    System.out.println("method Duplicate");
+  }
+  public static void main(String[] args){
+    Test t = new Test();
+    t.m1();
+  }
+}
+error: method m1() is already defined in class Test
+Note-: Duplicate Methods are not allowed within the class.
+Inside the class it is not possible to declare two Methods with same signature.
+-------------
+Example 5-:
+class Test{
+  m1(){
+    System.out.println("method m1");
+  }
+  public static void main(String[] args){
+    Test t = new Test();
+    t.m1();
+    t.m2();
+  }
+}
+/*
+My Question-: Return-type is Mandatory or Optional.
+Compiler Answer-: SampleExampleMethod.java:2: error: invalid method declaration; return type required
+
+*/
+-------------
+Example 6-:
+class Test{
+  void m1(){
+    System.out.println("method m1");
+    void m2(){                        //inner method
+      System.out.println("method m2");
+    }
+  }
+
+  public static void main(String[] args){
+    Test t = new Test();
+    t.m1();
+  }
+}
+/*
+My Question - Can we call method inside method in java.
+Compilar Answer-: SampleExampleMethod.java:4: error: illegal start of expression
+That means method inside method is not valid in Java.
+Inner methods are not allowed.
+Declaring class inside class that is Inner Class ,Java Supports inner classes concept but not support inner method concept.
+*/
+------------
+Example 7-:  method calling
+class Test{
+  void m1(){    //instance method
+    m2();       //instance method calling
+    System.out.println("method m1");
+  }
+  void m2(){    //instance method
+    Test.m3();  // static method calling
+    System.out.println("method m2");
+  }
+  static void m3(){ //static method
+    System.out.println("method m3");
+  }
+  public static void main(String[] args){
+    Test t = new Test();
+    t.m1();
+
+  }
+}
+/*
+pika@pika-HP-ENVY-Notebook:~/java_kanha/Java_Programmes$ java Test
+method m3
+method m2
+method m1
+
+That means calling method inside method is valid.
+*/
+------------
+Example 8-:
+class Test
+{ //instance variables
+  int x = 100;
+  int y = 200;
+  void add(int x, int y)    //local variables
+  {
+    System.out.println(x+y);
+    System.out.println("method m1");
+  }
+  public static void main(String[] args)
+  {
+    Test t = new Test();
+    t.add(1000,2000);
+
+  }
+}
+/*
+pika@pika-HP-ENVY-Notebook:~/java_kanha/Java_Programmes$ java Test
+3000
+method m1
+***If two variables are same then priority goes with local variables.***
+that means local variables have higher priority than instance variables.
+*/
+------------
+Example 9-:     to represent instance variable this keyword is used.
+How to make instance variables as local variables.
+class Test
+{ //instance variables
+  int x = 100;
+  int y = 200;
+  void add(int x, int y)    //local variables
+  {
+    System.out.println(x+y);
+    System.out.println("method m1");
+    System.out.println(this.x+this.y);
+  }
+  public static void main(String[] args)
+  {
+    Test t = new Test();
+    t.add(1000,2000);
+
+  }
+}
+/*
+Using "this" keyword make instance variables as local variables.
+pika@pika-HP-ENVY-Notebook:~/java_kanha/Java_Programmes$ java Test
+3000
+method m1
+300
+*/
+------------
+Example 10-:    inside static area this keyword is not allowed.
+class Test
+{ //instance variables
+  int x = 100;
+  int y = 200;
+  static void add(int x, int y)    //static area
+  {
+    System.out.println(this.x+this.y);      // Using this keyword
+  }
+  public static void main(String[] args)
+  {
+    Test t = new Test();
+    t.add(1000,2000);
+
+  }
+}
+/*
+SampleExampleMethod.java:7: error: non-static variable this cannot be referenced from a static context
+That means entire java inside static area this keyword is not used .
+*/
+---------------
+Example 11-:
+Java does not support operator overloading But only one overload operator in Java is "+" operator. It can add & concat both in Java.
+One operator having different behaviour is called operator overloading in Java.
+class Test
+{
+  public static void main(String[] args)
+  {
+    System.out.println("Kanhaiya"+"Freelancer");
+    System.out.println(10+20);
+    System.out.println(10+20+"Kanhaiya"+"Freelancer");
+    System.out.println(10+20+"Kanhaiya"+"Freelancer"+100+200);
+    int a=10,b=20,c=30;
+    System.out.println(a+"----"+b+"----"+c);    //we can print multiple variable in one line using concatination.
+  }
+}
+/*
+Output-:
+pika@pika-HP-ENVY-Notebook:~/java_kanha/Java_Programmes$ java Test
+KanhaiyaFreelancer
+pika@pika-HP-ENVY-Notebook:~/java_kanha/Java_Programmes$ java Test
+KanhaiyaFreelancer
+30
+pika@pika-HP-ENVY-Notebook:~/java_kanha/Java_Programmes$ java Test
+KanhaiyaFreelancer
+30
+30KanhaiyaFreelancer
+pika@pika-HP-ENVY-Notebook:~/java_kanha/Java_Programmes$ java Test
+KanhaiyaFreelancer
+30
+30KanhaiyaFreelancer
+30KanhaiyaFreelancer100200
+pika@pika-HP-ENVY-Notebook:~/java_kanha/Java_Programmes$ java Test
+KanhaiyaFreelancer
+30
+30KanhaiyaFreelancer
+30KanhaiyaFreelancer100200
+10----20----30
+*/
